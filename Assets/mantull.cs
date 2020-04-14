@@ -7,13 +7,17 @@ public class mantull : MonoBehaviour
 
     // Start is called before the first frame update
 
-	public int speed= 30;
+	//public int speed= 30;
     public Rigidbody2D sesuatu;
 
     public Animator animtr;
     void Start()
     {
-    	sesuatu.velocity = new Vector2(-1, -1)*speed;
+        int x = Random.Range(0, 2)*2 - 1; //nilai x bisa bernilai -1 atau 1
+        int y = Random.Range(0, 2)*2 - 1; //nilai y bisa bernilai -1 atau 1
+        int speed = Random.Range(20, 26); //nilai speed bisa bernilai 20 sampai 25
+    	sesuatu.velocity = new Vector2(x, y)*speed;
+        sesuatu.GetComponent<Transform>().position = Vector2.zero;
         animtr.SetBool("IsMove", true);
     }
 
@@ -30,15 +34,20 @@ public class mantull : MonoBehaviour
     //Mengecek apakah ada tabrakan
     void OnCollisionEnter2D(Collision2D other){
     	if(other.collider.name=="Kanan" || other.collider.name=="Kiri"){
-            StartCoroutine(jeda());
+            StartCoroutine(jeda()); //Untuk pindah ke tengah
     	}	
     }
     IEnumerator jeda(){
-        sesuatu.velocity = Vector2.zero;
-        animtr.SetBool("IsMove", false);
+        sesuatu.velocity = Vector2.zero; //Menghentikan bola
+        animtr.SetBool("IsMove", false); //Mengubah animasi ke api berhenti
         sesuatu.GetComponent<Transform>().position = Vector2.zero;//bola pindah ke tengah setelah menabrak dinding
+
         yield return new WaitForSeconds(1);
-        sesuatu.velocity = new Vector2(-1, -1)*speed;
-        animtr.SetBool("IsMove", true);
+
+        int x = Random.Range(0, 2)*2 - 1; //nilai x bisa bernilai -1 atau 1
+        int y = Random.Range(0, 2)*2 - 1; //nilai y bisa bernilai -1 atau 1
+        int speed = Random.Range(20, 26); //nilai speed bisa bernilai 20 sampai 25
+        sesuatu.velocity = new Vector2(x, y)*speed;//Mengatur kecepatan
+        animtr.SetBool("IsMove", true); //Mengubah animasi ke api bergerak
     }
 }
