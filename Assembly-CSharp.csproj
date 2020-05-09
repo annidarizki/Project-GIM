@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\EndingScript.cs" />
      <Compile Include="Assets\mantull.cs" />
+     <Compile Include="Assets\MusicScript.cs" />
      <Compile Include="Assets\PlayScript.cs" />
      <Compile Include="Assets\raketkanan.cs" />
      <Compile Include="Assets\raketkiri.cs" />

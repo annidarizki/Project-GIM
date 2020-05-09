@@ -14,6 +14,8 @@ public class mantull : MonoBehaviour
 
     public GameObject masterScript;
 
+    public AudioSource hitEffect;
+
     void Start()
     {
         int x = Random.Range(0, 2)*2 - 1; //nilai x bisa bernilai -1 atau 1
@@ -40,6 +42,9 @@ public class mantull : MonoBehaviour
             masterScript.GetComponent<ScoringScript>().UpdateScore(other.collider.name);
             StartCoroutine(jeda()); //Untuk pindah ke tengah
     	}
+        if(other.collider.tag=="Player"){
+            hitEffect.Play();
+        }
     }
     IEnumerator jeda(){ 
         sesuatu.velocity = Vector2.zero; //Menghentikan bola
